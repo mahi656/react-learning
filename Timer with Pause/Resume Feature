@@ -1,0 +1,56 @@
+COUNTDOWN.JS------------------
+
+import React, { useState, useEffect } from "react";
+
+export default function Countdown() {
+  const [count, setCount] = useState(10);
+  const [isRunning, setIsRunning] = useState(true);
+
+  useEffect(() => {
+    let timer
+    if (count > 0 && isRunning) {
+      timer = setTimeout(() => {
+        setCount(count - 1)
+      }, 1000)
+    }
+
+    return () => clearTimeout(timer)
+  }, [count, isRunning])
+
+  const handleClick = () => {
+  if (isRunning === true) {
+    setIsRunning(false);
+  } else {
+    setIsRunning(true);
+  }
+}
+
+
+  return (
+    <>
+      <h1>Countdown: {count}</h1>
+      <button onClick={handleClick}>
+        {isRunning ? "Pause" : "Resume"}
+      </button>
+    </>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+APP>JS------------------
+import Countdown from './components/Countdown.js'
+export default function App() {
+    return (
+      <Countdown/>
+    )
+  }
+  
