@@ -1,0 +1,30 @@
+COUNTDOWN>JS----------------
+import React, {useState,useEffect} from "react";
+const CountDown = () => {
+    const[countervalue,setcountervalue]=useState(10)
+    useEffect(()=>{
+        if(countervalue>0){
+            setTimeout(()=>
+            setcountervalue(countervalue-1),1000)
+        }
+    },[countervalue])
+    return <h1>Counter: {countervalue}</h1>
+}
+export default CountDown;
+
+
+
+
+
+APP>JS--------------
+
+import React from "react"
+import CountDown from "./components/CountDown"
+export default function App() {
+    return (
+      <div className="App">
+      <CountDown />
+      </div>
+    )
+  }
+  
