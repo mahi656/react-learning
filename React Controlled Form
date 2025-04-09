@@ -1,0 +1,96 @@
+import { useState } from "react";
+
+export default function App() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    age: "",
+  })
+
+  const handleChange = (e) => {
+  const name = e.target.name;
+  const value = e.target.value;
+
+  const newData = { ...formData };
+  newData[name] = value;
+  setFormData(newData);
+};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const { name, email, age } = formData
+
+    if (!name || !email || !age) {
+      return
+    }
+    console.log(formData)
+  }
+
+  return (
+    <div>
+      <h2>Single useState Form</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            type="number"
+            name="age"
+            placeholder="Enter your age"
+            value={formData.age}
+            onChange={handleChange}
+          />
+        </div>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Requirements:
+Use useState to manage form inputs (name, email, age).
+Use controlled components, meaning the input fields should be fully controlled by React state.
+Add an onChange handler to update the state when the user types in the input fields.
+When the "Submit" button is clicked, log the form data ({ name, email, age }) to the console.
+Ensure that the form does not refresh the page on submission.
+ 
+Test Cases
+1.
+should render the form with all input fields and submit button
+2.
+should allow typing
+3.
+should log form data to the console on form submission
+4.
+should not submit the form if any field is empty
