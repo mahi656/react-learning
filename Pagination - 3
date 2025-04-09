@@ -1,0 +1,74 @@
+import React, { useEffect, useState } from "react";
+
+const DATA_PER_PAGE = 5;
+
+export const Pagination = () => {
+  const [page, setPage] = useState(1);
+  const [data,setdata] = useState([]);
+
+
+  const handleIncrement = () => {
+    setPage(page + 1);
+  }
+
+  const handleDecrement = () => {
+    setPage(page - 1);
+  }
+  
+
+  useEffect(() => {
+    fetch(
+      `https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products?page=${page}&limit=${DATA_PER_PAGE}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setdata(data)
+
+      });
+  }, [page, DATA_PER_PAGE]);
+
+  return (
+    <div>
+      <button onClick={handleIncrement}>Increment Page</button>
+      <div aria-label="Page">{page}</div>
+      <button onClick={handleDecrement}>Decrement Page</button>
+      <br></br>
+      {data.map((item)=>{
+        return(
+          <div key={item.id}>
+          <div aria-label="Id">{item.id}</div>
+          <div aria-label="Product">{item.title}</div>
+          <div aria-label="Price">{item.price}</div>
+          </div>
+        )
+      })}
+      
+    </div>
+  );
+};
+
+
+
+
+
+
+
+
+
+
+
+
+Store API Data in State:
+Use the useState hook to create a state variable that will store the data fetched from the API.
+Update the useEffect hook to set the fetched data into this state variable.
+Render the Data:
+Using the state variable that now holds the API data, render the data into the HTML/JSX.
+Use the provided template to render each item in the data array. Use the below HTML template to render each object inside the response data.
+
+Test Cases
+1.
+should display IDs 1 to 5 on page 1
+2.
+should display IDs 6 to 10 on page 2 after incrementing
+3.
+should display IDs 1 to 5 again after decrementing from page 2
