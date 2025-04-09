@@ -1,0 +1,61 @@
+import React from 'react';
+
+const BlogList = () => {
+  const blogPosts = [
+    {
+      author: 'John Doe',
+      title: 'My First Blog Post',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      bannerImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbi6SmUiWTXz4_ve03OoxVJQ2_g7jaKxvi20DIMxsLlv5zDleZqMnfX1OaJGtpOs56UUw&usqp=CAU',
+      likes: 10,
+      comments: 5,
+    },
+    {
+      author: 'Jane Smith',
+      title: 'My Second Blog Post',
+      description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+      bannerImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT28r9YbcfbYKSS35erwiSDJTA61xHXeTSbmLz6DSvzzhZoDgbfUM1fUa5mT0wXgpFliHM&usqp=CAU',
+      likes: 20,
+      comments: 8,
+    },
+    {
+        author: 'Brian Doe',
+        title: 'My Third Blog Post',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        bannerImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8zdAA8xm_ueGuH4YOfZQKUJqKtVBlusc8BJd6wpHG8931A-HMyWegsg3dLrgzA9EW9g&usqp=CAU',
+        likes: 10,
+        comments: 5,
+    },
+    {
+        author: 'Ben Swift',
+        title: 'My Fourth Blog Post',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        bannerImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR2gtHnjTdNe8zEq6n3E51lp4H5JCAPoxEA-qcTrgKOW1HoYayeUM8XJJqlvbOsYKLhbM&usqp=CAU',
+        likes: 10,
+        comments: 5,
+    },
+
+  ];
+
+  return (
+    <div className="blog-list">
+    {blogPosts.map((post)=>
+
+      <div className="blog">
+      <div className="banner">
+        <img src={post.bannerImage} alt="Banner" />
+      </div>
+      <div className="details">
+        <h2>{post.title}</h2>
+        <p id="desc">{post.description}</p>
+        <p id="author">By {post.author}</p>
+        <p id="likes">Likes: {post.likes}</p>
+        <p id="com">Comments: {post.comments}</p>
+      </div>
+    </div>
+    )}
+    </div>
+  );
+}; 
+
+export default BlogList;
