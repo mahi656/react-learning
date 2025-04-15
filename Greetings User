@@ -1,0 +1,31 @@
+import React, { useRef, useState } from 'react';
+
+export function App() {
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const emailRef = useRef();
+  const [greeting, setGreeting] = useState("");
+
+  const handleChange = () => {
+    const firstName = firstNameRef.current.value;
+    const email = emailRef.current.value;
+    setGreeting(`Hello, ${firstName}! Your email is ${email}`);
+  };
+
+  return (
+    <div className="App">
+      <h1>Personalized Greeting</h1>
+      <label>
+        First Name: <input type="text" ref={firstNameRef} />
+      </label><br/>
+      <label>
+        Last Name: <input type="text" ref={lastNameRef} />
+      </label><br/>
+      <label>
+        Email: <input type="email" ref={emailRef} />
+      </label><br/>
+      <button onClick={handleChange}>Submit</button>
+      <p>{greeting}</p>
+    </div>
+  );
+}
