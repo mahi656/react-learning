@@ -1,0 +1,44 @@
+import React,{ useState, useRef } from "react";
+
+const ChatApp = () => {
+  const messageRef = useRef()
+  const [chats,setChats] = useState([]);
+
+  const handleAddChats = () => {
+    if (messageRef.current.value === "") return;
+    setChats([...chats, messageRef.current.value])
+    messageRef.current.value = "";
+  }
+  
+  return (
+    <div style={{ maxWidth: "400px", margin: "20px auto", textAlign: "center" }}>
+      <h2>Chat Application</h2>
+      <div
+        style={{
+          height: "200px",
+          border: "1px solid #ccc",
+          padding: "10px",
+          overflowY: "auto",
+        }}
+      >
+      {chats.length === 0 ? 
+      (<p>No messages yet</p>) :
+      (chats.map((ele) => {
+          return <div><strong>User:</strong> {ele}</div>
+        }))}
+      </div>
+
+      <input
+      ref = {messageRef}
+        type="text"
+        placeholder="Type a message..."
+        style={{ width: "80%", padding: "5px", marginTop: "10px" }}
+      />
+      <button style={{ marginLeft: "5px", padding: "5px" }} onClick={handleAddChats}>
+        Send
+      </button>
+    </div>
+  );
+};
+
+export default ChatApp;
